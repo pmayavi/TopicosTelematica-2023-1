@@ -19,12 +19,11 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
         if (item in inventory and inventory[item] > 0):
             return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
         else:
-            return Service_pb2.TransactionResponse(status=0, inventory=0)
+            return Service_pb2.TransactionResponse(status_code=0, inventory=0)
 
     def ChangeItem(self, response, context):
         item = response.item
         num = response.num
-        print("\nRequest is received: " + item + " has " + num)
         with open("inventory.json", "r") as inv:
             inventory = json.loads(inv.read())
         inventory[item] += num
