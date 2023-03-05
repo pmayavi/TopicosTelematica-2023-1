@@ -6,6 +6,7 @@ message Product{
 
 message TransactionResponse{
     int32 status_code = 1;
+    int32 inventory = 5;
 }
 
 service ProductService{
