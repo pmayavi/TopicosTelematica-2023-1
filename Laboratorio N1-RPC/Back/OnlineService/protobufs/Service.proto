@@ -2,12 +2,12 @@ syntax = "proto3";
 
 message Product{
     string item = 1;
-    int32 num = 1;
+    int32 num = 2;
 }
 
 message TransactionResponse{
     bool status = 1;
-    int32 inventory = 1;
+    int32 inventory = 2;
 }
 
 service ProductService{
