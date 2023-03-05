@@ -1,14 +1,16 @@
 syntax = "proto3";
 
 message Product{
-    int32 id_product = 1;
+    string item = "Coffee";
+    int32 num = 1;
 }
 
 message TransactionResponse{
-    int32 status_code = 1;
+    bool status = 1;
     int32 inventory = 5;
 }
 
 service ProductService{
-    rpc AddProduct(Product) returns (TransactionResponse) {}
+    rpc CheckItem(Product) returns (TransactionResponse) {}
+    rpc ChangeItem(Product) returns (TransactionResponse) {}
 }

@@ -8,31 +8,69 @@ const PROTO_PATH = process.env.PROTO_PATH;
 const REMOTE_HOST = process.env.REMOTE_HOST;
 
 const packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
-    {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
-    });
+  PROTO_PATH,
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  });
 
 console.info("Consumer service is started...");
 
 const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
 
-function main(){
+function main() {
 
-  const idProduct = 1;
-  const client = new productService(REMOTE_HOST,grpc.credentials.createInsecure());
+  const item1 = "Coffee";
+  const item2 = "Pens";
+  const client = new productService(REMOTE_HOST, grpc.credentials.createInsecure());
 
-  client.AddProduct({id_product: idProduct} , (err, data) => {
+  client.CheckItem({ item: item1, num: 0 }, (err, data) => {
 
-    if(err){
+    if (err) {
       console.log(err);
     } else {
       console.log('Response received from remote service:', data); // API response
     }
-   });
+  });
+
+  client.CheckItem({ item: item2, num: 0 }, (err, data) => {
+
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+
+  client.ChangeItem({ item: item2, num: 1 }, (err, data) => {
+
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+
+  client.CheckItem({ item: item2, num: 0 }, (err, data) => {
+
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+
+  client.ChangeItem({ item: item2, num: -1 }, (err, data) => {
+
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
 
 };
 
