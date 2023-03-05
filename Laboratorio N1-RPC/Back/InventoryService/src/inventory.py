@@ -12,7 +12,6 @@ HOST = '[::]:8080'
 class ProductService(Service_pb2_grpc.ProductServiceServicer):
     def CheckItem(self, response, context):
         item = response.item
-        print("\nRequest is received: " + item)
         with open("inventory.json", "r") as inv:
             inventory = json.loads(inv.read())
 
