@@ -17,19 +17,21 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
             inventory = json.loads(inv.read())
 
         if (item in inventory and inventory[item] > 0):
+            print("\nRequest is received: " + item + " has " + inventory[item])
             return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
         else:
+            print("\nRequest is received: " + item + " has 0")
             return Service_pb2.TransactionResponse(status=0, inventory=0)
 
     def ChangeItem(self, response, context):
         item = response.item
         num = response.num
-        print("\nRequest is received: " + item + " has " + num)
         with open("inventory.json", "r") as inv:
             inventory = json.loads(inv.read())
         inventory[item] += num
         with open("inventory.json", "w") as outfile:
             json.dump(inventory, outfile, indent=4)
+        print("\nRequest is received: " + item + " now has " + inventory[item])
         return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
 
 
