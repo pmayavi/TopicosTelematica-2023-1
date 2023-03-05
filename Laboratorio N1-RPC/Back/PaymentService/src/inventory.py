@@ -12,8 +12,10 @@ HOST = '[::]:8080'
 class ProductService(Service_pb2_grpc.ProductServiceServicer):
     def CheckItem(self, response, context):
         print(response)
+        print(type(response))
         print(response[1])
         print(response[item])
+        print(type(response[1]))
         item = response[1]
         print("\nRequest is received: " + item)
         with open("inventory.json", "r") as inv:
@@ -26,8 +28,10 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
 
     def ChangeItem(self, response, context):
         print(response)
+        print(type(response))
         print(response[1])
         print(response[2])
+        print(type(response[1]))
         item = response[1]
         num = response[2]
         with open("inventory.json", "r") as inv:
