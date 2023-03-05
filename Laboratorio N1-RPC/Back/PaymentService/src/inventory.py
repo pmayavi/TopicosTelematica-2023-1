@@ -24,6 +24,7 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
     def ChangeItem(self, response, context):
         item = response.item
         num = response.num
+        print("\nRequest is received: " + item + " has " + num)
         with open("inventory.json", "r") as inv:
             inventory = json.loads(inv.read())
         inventory[item] += num
