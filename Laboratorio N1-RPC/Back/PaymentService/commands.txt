@@ -1,0 +1,13 @@
+sudo apt-get update
+sudo apt-get upgrade
+Y
+sudo apt-get install python3
+sudo apt-get install python3-pip
+Y
+sudo python3 -m pip install grpcio
+sudo python3 -m pip install grpcio-tools
+sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
+
+cd TopicosTelematica-2023-1/Laboratorio\ N1-RPC/Back/PaymentService/src/
+sudo python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/Service.proto
+sudo python3 server.py
