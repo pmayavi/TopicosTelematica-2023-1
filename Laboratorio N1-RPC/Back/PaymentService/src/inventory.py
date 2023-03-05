@@ -19,7 +19,7 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
         if (item in inventory and inventory[item] > 0):
             return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
         else:
-            return Service_pb2.TransactionResponse(status_code=0, inventory=0)
+            return Service_pb2.TransactionResponse(status=0, inventory=0)
 
     def ChangeItem(self, response, context):
         item = response.item
