@@ -51,6 +51,16 @@ function checkB(client, name) {
   });
 }
 
+function ship(client, name, n) {
+  client.ShipItem({ item: name, num: n }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+}
+
 const paymentService = grpc.loadPackageDefinition(packageDefinition).PaymentService;
 const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 const shipmentService = grpc.loadPackageDefinition(packageDefinition).ShipmentService;
@@ -74,7 +84,7 @@ function main() {
 
   const shi = new shipmentService(REMOTE_HOST3, grpc.credentials.createInsecure());
 
-  change(shi, "Pens", 1);
+  ship(shi, "Home", "Pens");
 };
 
 main();
