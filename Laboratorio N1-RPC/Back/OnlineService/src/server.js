@@ -40,17 +40,19 @@ function change(client, name, n) {
   });
 }
 
-const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
+const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
 
 function main() {
 
-  const inv = new inventoryService(REMOTE_HOST2, grpc.credentials.createInsecure());
+  const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
 
-  check(inv, "Coffee");
-  check(inv, "Pens");
-  change(inv, "Pens", 1);
-  check(inv, "Pens");
-  change(inv, "Pens", -1);
+  bank.CheckBank({ item: "Hello" }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
 };
 
 main();
