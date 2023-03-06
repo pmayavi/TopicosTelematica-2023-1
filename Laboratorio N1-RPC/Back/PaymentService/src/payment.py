@@ -9,7 +9,7 @@ import Service_pb2_grpc
 HOST = '[::]:8080'
 
 
-class ProductService(Service_pb2_grpc.ProductServiceServicer):
+class PaymentService(Service_pb2_grpc.PaymentServiceServicer):
     def CheckItem(self, response, context):
         item = response.item
         with open("banks.json", "r") as inv:
@@ -35,8 +35,8 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    Service_pb2_grpc.add_ProductServiceServicer_to_server(
-        ProductService(), server)
+    Service_pb2_grpc.add_PaymentServiceServicer_to_server(
+        PaymentService(), server)
     server.add_insecure_port(HOST)
     print("Service is running... ")
     server.start()

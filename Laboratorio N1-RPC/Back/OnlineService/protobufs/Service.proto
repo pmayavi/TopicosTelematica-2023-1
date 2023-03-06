@@ -5,7 +5,7 @@ service InventoryService{
     rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }
 
-service ProductService{
+service PaymentService{
     rpc CheckItem(Send) returns (TransactionResponse) {}
     rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }

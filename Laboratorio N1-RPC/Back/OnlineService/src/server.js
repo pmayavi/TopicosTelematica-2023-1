@@ -40,12 +40,12 @@ function change(client, name, n) {
   });
 }
 
-const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
+const paymentService = grpc.loadPackageDefinition(packageDefinition).PaymentService;
 const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
 function main() {
 
-  const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
+  const bank = new paymentService(REMOTE_HOST1, grpc.credentials.createInsecure());
   check(bank, "1234");
   check(bank, "cero");
   check(bank, "4321");
