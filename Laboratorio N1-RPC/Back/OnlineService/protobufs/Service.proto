@@ -6,8 +6,7 @@ service InventoryService{
 }
 
 service PaymentService{
-    rpc CheckItem(Send) returns (TransactionResponse) {}
-    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
+    rpc CheckBank(Send) returns (TransactionResponse) {}
 }
 
 message Send{

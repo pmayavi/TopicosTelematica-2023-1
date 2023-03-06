@@ -10,7 +10,7 @@ HOST = '[::]:8080'
 
 
 class PaymentService(Service_pb2_grpc.PaymentServiceServicer):
-    def CheckItem(self, response, context):
+    def CheckBank(self, response, context):
         item = response.item
         with open("banks.json", "r") as inv:
             inventory = json.loads(inv.read())
@@ -28,9 +28,6 @@ class PaymentService(Service_pb2_grpc.PaymentServiceServicer):
             print("Card doesn't exist.")
             return Service_pb2.TransactionResponse(status=0, inventory=0)
         return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
-
-    def ChangeItem(self, response, context):
-        pass
 
 
 def serve():
