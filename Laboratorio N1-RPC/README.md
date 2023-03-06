@@ -54,6 +54,7 @@ Desarrolle los codigos de los microservicios el fin de semana del 24 de febrero 
 
 ### **5. Despliegue**
 
+Se edita el archivo de .env con las IPS adecuadas, o solo se edita en la instancia API. 
 Despliego el servicio en 4 instancias de AWS, cada instancia se le ingresan los comandos que estan en su carpeta en el .txt, de esta forma se inicia correctamente el servicio, y se inicia el API, actualemnte en el main simplemente hace metodos a cada servicio pero se puede cambiar por una interfaz o aprender a usar postman, pero no es requerimiento del documento.
 
 *******
