@@ -39,11 +39,10 @@ function change(client, name, n) {
   });
 }
 
-const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
+const invService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
 function main() {
-
-  const client = new productService(REMOTE_HOST, grpc.credentials.createInsecure());
+  const client = new invService(REMOTE_HOST, grpc.credentials.createInsecure());
 
   check(client, "Coffee");
   check(client, "Pens");
