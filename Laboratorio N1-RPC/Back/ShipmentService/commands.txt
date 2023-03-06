@@ -5,10 +5,10 @@ sudo python3 -m pip install grpcio-tools
 sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
 cd TopicosTelematica-2023-1/
 sudo git checkout work
-cd Laboratorio\ N1-RPC/Back/PaymentService/src/
+cd Laboratorio\ N1-RPC/Back/ShipmentService/src/
 sudo python3 -m grpc_tools.protoc -I ../../OnlineService/protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../../OnlineService/protobufs/Service.proto
-sudo python3 payment.py
+sudo python3 shipment.py
 
 sudo git pull && \
 sudo python3 -m grpc_tools.protoc -I ../../OnlineService/protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../../OnlineService/protobufs/Service.proto && \
-sudo python3 payment.py
+sudo python3 shipment.py
