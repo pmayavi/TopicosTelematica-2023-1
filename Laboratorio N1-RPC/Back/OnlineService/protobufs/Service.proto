@@ -9,6 +9,11 @@ service PaymentService{
     rpc CheckBank(Send) returns (TransactionResponse) {}
 }
 
+service ShipmentService{
+    rpc CheckItem(Send) returns (TransactionResponse) {}
+    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
+}
+
 message Send{
     string item = 1;
 }
