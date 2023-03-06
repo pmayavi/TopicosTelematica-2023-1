@@ -11,9 +11,9 @@ namespace TransactionService {
   /// <summary>
   /// The greeting service definition.
   /// </summary>
-  public static partial class Greeter
+  public static partial class ProductService
   {
-    static readonly string __ServiceName = "greet.Greeter";
+    static readonly string __ServiceName = "greet.ProductService";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -67,9 +67,9 @@ namespace TransactionService {
       get { return global::TransactionService.GreetReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of Greeter</summary>
-    [grpc::BindServiceMethod(typeof(Greeter), "BindService")]
-    public abstract partial class GreeterBase
+    /// <summary>Base class for server-side implementations of ProductService</summary>
+    [grpc::BindServiceMethod(typeof(ProductService), "BindService")]
+    public abstract partial class ProductServiceBase
     {
       /// <summary>
       /// Sends a greeting
@@ -88,7 +88,7 @@ namespace TransactionService {
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(GreeterBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(ProductServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_SayHello, serviceImpl.SayHello).Build();
@@ -99,7 +99,7 @@ namespace TransactionService {
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, GreeterBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, ProductServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_SayHello, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::TransactionService.HelloRequest, global::TransactionService.HelloReply>(serviceImpl.SayHello));
     }

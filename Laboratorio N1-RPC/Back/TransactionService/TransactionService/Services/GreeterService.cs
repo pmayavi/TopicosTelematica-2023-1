@@ -3,7 +3,7 @@ using TransactionService;
 
 namespace TransactionService.Services
 {
-    public class GreeterService : Greeter.GreeterBase
+    public class GreeterService : ProductService.ProductServiceBase
     {
         private readonly ILogger<GreeterService> _logger;
         public GreeterService(ILogger<GreeterService> logger)
