@@ -44,6 +44,8 @@ const productService = grpc.loadPackageDefinition(packageDefinition).ProductServ
 
 function main() {
 
+  const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
+  check(bank, "Hello");
 
   const inv = new productService(REMOTE_HOST2, grpc.credentials.createInsecure());
 

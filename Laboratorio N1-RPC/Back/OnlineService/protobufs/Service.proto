@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 service ProductService{
-    rpc CheckBank(Send) returns (TransactionResponse) {}
     rpc CheckItem(Send) returns (TransactionResponse) {}
     rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }
