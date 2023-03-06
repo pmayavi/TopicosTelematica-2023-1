@@ -51,8 +51,8 @@ function checkB(client, name) {
   });
 }
 
-function ship(client, name, n) {
-  client.ShipItem({ item: name, num: n }, (err, data) => {
+function ship(client, add, it) {
+  client.ShipItem({ adress: add, item: it }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
