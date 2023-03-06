@@ -21,34 +21,9 @@ console.info("Consumer service is started...");
 
 const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
-function check(client, name) {
-  client.CheckItem({ item: name, num: 0 }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-}
-
-function change(client, name, n) {
-  client.ChangeItem({ item: name, num: n }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-}
-
 function main() {
   const client = new inventoryService(REMOTE_HOST, grpc.credentials.createInsecure());
 
-  check(client, "Coffee");
-  check(client, "Pens");
-  change(client, "Pens", 1);
-  check(client, "Pens");
-  change(client, "Pens", -1);
 };
 
 main();
