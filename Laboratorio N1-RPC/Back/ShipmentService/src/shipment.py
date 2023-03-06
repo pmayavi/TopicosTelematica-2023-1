@@ -10,18 +10,16 @@ HOST = '[::]:8080'
 
 
 class ShipmentService(Service_pb2_grpc.ShipmentServiceServicer):
-    def CheckItem(self, response, context):
-        pass
-
-    def ChangeItem(self, response, context):
+    def ShipItem(self, response, context):
+        address = response.address
         item = response.item
-        num = response.num
         with open("shiped.json", "r") as shi:
             ship = json.loads(shi.read())
-        ship[item] = num
+        ship[address] = item
         with open("banks.json", "w") as outfile:
             json.dump(ship, outfile, indent=4)
-        print("Request is received: " + item + " now has " + str(num))
+        print("Request is received: " + address + " now has " + item)
+        return Service_pb2.TransactionResponse(status=1, inventory=0)
 
 
 def serve():
