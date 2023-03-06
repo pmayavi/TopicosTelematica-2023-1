@@ -11,18 +11,8 @@ HOST = '[::]:8080'
 
 class ProductService(Service_pb2_grpc.ProductServiceServicer):
     def CheckItem(self, response, context):
-        item = response.item
-        print("\nRequest is received: " + item)
-        with open("inventory.json", "r") as inv:
-            inventory = json.loads(inv.read())
-
-        if (item in inventory and inventory[item] > 0):
-            print("\nRequest is received: " + item +
-                  " has " + str(inventory[item]))
-            return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
-        else:
-            print("\nRequest is received: " + item + " has 0")
-            return Service_pb2.TransactionResponse(status=0, inventory=0)
+        bank = response.item
+        return Service_pb2.TransactionResponse(status=1, inventory=100)
 
     def ChangeItem(self, response, context):
         item = response.item
@@ -35,10 +25,6 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
         print("\nRequest is received: " + item +
               " now has " + str(inventory[item]))
         return Service_pb2.TransactionResponse(status=1, inventory=inventory[item])
-
-    def CheckBank(self, response, context):
-        bank = response.item
-        return Service_pb2.TransactionResponse(status=1, inventory=100)
 
 
 def serve():
