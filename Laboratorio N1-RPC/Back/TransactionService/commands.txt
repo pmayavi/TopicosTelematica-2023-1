@@ -1,0 +1,6 @@
+dotnet new console
+dotnet nuget add source --name nuget.org https://api.nuget.org/v3/index.json
+dotnet add package Grpc.AspNetCore
+dotnet add package Grpc.Tools    
+dotnet add package Google.Protobuf
+dotnet add package Grpc.Net.Client
