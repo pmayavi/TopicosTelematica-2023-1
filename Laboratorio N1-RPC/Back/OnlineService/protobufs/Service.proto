@@ -1,5 +1,10 @@
 syntax = "proto3";
 
+service InventoryService{
+    rpc CheckItem(Send) returns (TransactionResponse) {}
+    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
+}
+
 service ProductService{
     rpc CheckItem(Send) returns (TransactionResponse) {}
     rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}

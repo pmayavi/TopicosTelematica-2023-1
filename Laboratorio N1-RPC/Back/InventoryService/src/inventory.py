@@ -9,7 +9,7 @@ import Service_pb2_grpc
 HOST = '[::]:8080'
 
 
-class ProductService(Service_pb2_grpc.ProductServiceServicer):
+class InventoryService(Service_pb2_grpc.InventoryServiceServicer):
     def CheckItem(self, response, context):
         item = response.item
         print("\nRequest is received: " + item)
@@ -39,8 +39,8 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    Service_pb2_grpc.add_ProductServiceServicer_to_server(
-        ProductService(), server)
+    Service_pb2_grpc.add_InventoryServiceServicer_to_server(
+        InventoryService(), server)
     server.add_insecure_port(HOST)
     print("Service is running... ")
     server.start()

@@ -41,6 +41,7 @@ function change(client, name, n) {
 }
 
 const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
+const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
 function main() {
 
@@ -50,7 +51,7 @@ function main() {
   check(bank, "4321");
   check(bank, "noExiste");
 
-  const inv = new productService(REMOTE_HOST2, grpc.credentials.createInsecure());
+  const inv = new inventoryService(REMOTE_HOST2, grpc.credentials.createInsecure());
 
   check(inv, "Coffee");
   check(inv, "Pens");
