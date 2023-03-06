@@ -44,6 +44,13 @@ const invService = grpc.loadPackageDefinition(packageDefinition).ProductService;
 function main() {
   const client = new invService(REMOTE_HOST, grpc.credentials.createInsecure());
 
+  client.CheckItem({ item: "Coffee", num: 0 }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
   check(client, "Coffee");
   check(client, "Pens");
   change(client, "Pens", 1);
