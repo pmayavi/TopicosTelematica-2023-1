@@ -15,11 +15,15 @@ class ProductService(Service_pb2_grpc.ProductServiceServicer):
         with open("banks.json", "r") as inv:
             inventory = json.loads(inv.read())
         if item in inventory:
-            inventory[item] -= 100
-            with open("banks.json", "w") as outfile:
-                json.dump(inventory, outfile, indent=4)
-            print("Request is received: " + item +
-                  " now has " + str(inventory[item]))
+            if inventory[item] >= 100:
+                inventory[item] -= 100
+                with open("banks.json", "w") as outfile:
+                    json.dump(inventory, outfile, indent=4)
+                print("Request is received: " + item +
+                      " now has " + str(inventory[item]))
+            else:
+                print("No money.")
+                return Service_pb2.TransactionResponse(status=0, inventory=inventory[item])
         else:
             print("Card doesn't exist.")
             return Service_pb2.TransactionResponse(status=0, inventory=0)
