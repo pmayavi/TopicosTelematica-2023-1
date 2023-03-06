@@ -10,7 +10,7 @@ service PaymentService{
 }
 
 service ShipmentService{
-    rpc ShipItem(ship) returns (TransactionResponse) {}
+    rpc ShipItem(Ship) returns (TransactionResponse) {}
 }
 
 message Send{
