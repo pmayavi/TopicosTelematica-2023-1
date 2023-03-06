@@ -5,7 +5,8 @@ import protoLoader from '@grpc/proto-loader';
 dotenv.config()
 
 const PROTO_PATH = process.env.PROTO_PATH;
-const REMOTE_HOST = process.env.REMOTE_HOST;
+const REMOTE_HOST1 = process.env.REMOTE_HOST1;
+const REMOTE_HOST2 = process.env.REMOTE_HOST2;
 
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
@@ -43,13 +44,13 @@ const productService = grpc.loadPackageDefinition(packageDefinition).ProductServ
 
 function main() {
 
-  const client = new productService(REMOTE_HOST, grpc.credentials.createInsecure());
+  const ServicePy = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
 
-  check(client, "Coffee");
-  check(client, "Pens");
-  change(client, "Pens", 1);
-  check(client, "Pens");
-  change(client, "Pens", -1);
+  check(ServicePy, "Coffee");
+  check(ServicePy, "Pens");
+  change(ServicePy, "Pens", 1);
+  check(ServicePy, "Pens");
+  change(ServicePy, "Pens", -1);
 
 };
 
