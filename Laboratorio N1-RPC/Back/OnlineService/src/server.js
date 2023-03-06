@@ -41,6 +41,7 @@ function change(client, name, n) {
 }
 
 const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
+const productService2 = grpc.loadPackageDefinition(packageDefinition).Greeter;
 
 function main() {
 
@@ -52,6 +53,15 @@ function main() {
   check(ServicePy, "Pens");
   change(ServicePy, "Pens", -1);
 
+  const ServiceCss = new productService2(REMOTE_HOST2, grpc.credentials.createInsecure());
+
+  ServiceCss.SayHello({ item: "Hello" }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
 };
 
 main();
