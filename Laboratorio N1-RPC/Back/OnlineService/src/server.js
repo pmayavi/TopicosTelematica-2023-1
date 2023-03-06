@@ -39,7 +39,7 @@ function change(client, name, n) {
   });
 }
 
-const invService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
+const invService = grpc.loadPackageDefinition(packageDefinition).ProductService;
 
 function main() {
   const client = new invService(REMOTE_HOST, grpc.credentials.createInsecure());

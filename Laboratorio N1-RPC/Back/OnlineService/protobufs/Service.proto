@@ -1,24 +1,20 @@
 syntax = "proto3";
 
-message Single{
+message CheckProduct{
     string item = 1;
 }
 
-message Double{
+message ChangeProduct{
     string item = 1;
     int32 num = 2;
 }
 
-message InventoryResponse{
+message TransactionResponse{
     bool status = 1;
     int32 inventory = 2;
 }
 
-message BankResponse{
-    bool status = 1;
-}
-
-service InventoryService{
-    rpc CheckItem(Single) returns (InventoryResponse) {}
-    rpc ChangeItem(Double) returns (InventoryResponse) {}
+service ProductService{
+    rpc CheckItem(CheckProduct) returns (TransactionResponse) {}
+    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }
