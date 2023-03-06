@@ -7,6 +7,7 @@ dotenv.config()
 const PROTO_PATH = process.env.PROTO_PATH;
 const REMOTE_HOST1 = process.env.REMOTE_HOST1;
 const REMOTE_HOST2 = process.env.REMOTE_HOST2;
+const REMOTE_HOST3 = process.env.REMOTE_HOST3;
 
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
@@ -52,10 +53,12 @@ function checkB(client, name) {
 
 const paymentService = grpc.loadPackageDefinition(packageDefinition).PaymentService;
 const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
+const shipmentService = grpc.loadPackageDefinition(packageDefinition).ShipmentService;
 
 function main() {
 
   const bank = new paymentService(REMOTE_HOST1, grpc.credentials.createInsecure());
+
   checkB(bank, "1234");
   checkB(bank, "cero");
   checkB(bank, "4321");
@@ -68,6 +71,10 @@ function main() {
   change(inv, "Pens", 1);
   check(inv, "Pens");
   change(inv, "Pens", -1);
+
+  const shi = new shipmentService(REMOTE_HOST3, grpc.credentials.createInsecure());
+
+  change(shi, "Pens", 1);
 };
 
 main();

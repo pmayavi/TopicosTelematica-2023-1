@@ -9,7 +9,7 @@ import Service_pb2_grpc
 HOST = '[::]:8080'
 
 
-class PaymentService(Service_pb2_grpc.PaymentServiceServicer):
+class ShipmentService(Service_pb2_grpc.ShipmentServiceServicer):
     def CheckItem(self, response, context):
         pass
 
@@ -26,8 +26,8 @@ class PaymentService(Service_pb2_grpc.PaymentServiceServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    Service_pb2_grpc.add_PaymentServiceServicer_to_server(
-        PaymentService(), server)
+    Service_pb2_grpc.add_ShipmentServiceServicer_to_server(
+        ShipmentService(), server)
     server.add_insecure_port(HOST)
     print("Service is running... ")
     server.start()
