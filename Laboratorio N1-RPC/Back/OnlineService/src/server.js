@@ -44,15 +44,6 @@ const productService = grpc.loadPackageDefinition(packageDefinition).ProductServ
 
 function main() {
 
-  const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
-
-  bank.CheckBank({ item: "Hello" }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
 
   const inv = new productService(REMOTE_HOST2, grpc.credentials.createInsecure());
 
