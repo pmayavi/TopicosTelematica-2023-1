@@ -83,13 +83,6 @@ function main() {
   change(inv, "Pens", -1);
 
   const shi = new shipmentService(REMOTE_HOST3, grpc.credentials.createInsecure());
-  shi.ShipItem({ address: "Home", item: "Pens" }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
   ship(shi, "Home", "Pens");
 };
 
