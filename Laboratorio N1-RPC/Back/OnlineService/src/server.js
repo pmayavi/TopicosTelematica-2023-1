@@ -41,6 +41,7 @@ function change(client, name, n) {
 }
 
 const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
+const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
 function main() {
 
@@ -53,6 +54,14 @@ function main() {
       console.log('Response received from remote service:', data); // API response
     }
   });
+
+  const inv = new inventoryService(REMOTE_HOST2, grpc.credentials.createInsecure());
+
+  check(inv, "Coffee");
+  check(inv, "Pens");
+  change(inv, "Pens", 1);
+  check(inv, "Pens");
+  change(inv, "Pens", -1);
 };
 
 main();
