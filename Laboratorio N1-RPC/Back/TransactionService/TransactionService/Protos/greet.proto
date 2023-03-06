@@ -19,3 +19,24 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+
+
+message CheckProduct{
+  string item = 1;
+}
+
+message ChangeProduct{
+  string item = 1;
+  int32 num = 2;
+}
+
+message TransactionResponse{
+  bool status = 1;
+  int32 inventory = 2;
+}
+
+service ProductService{
+  rpc CheckItem(CheckProduct) returns (TransactionResponse) {}
+  rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
+}
