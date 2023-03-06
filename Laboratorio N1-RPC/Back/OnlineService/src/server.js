@@ -46,6 +46,9 @@ function main() {
 
   const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
   check(bank, "1234");
+  check(bank, "cero");
+  check(bank, "4321");
+  check(bank, "noExiste");
 
   const inv = new productService(REMOTE_HOST2, grpc.credentials.createInsecure());
 
