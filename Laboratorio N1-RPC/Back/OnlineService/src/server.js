@@ -21,7 +21,17 @@ const packageDefinition = protoLoader.loadSync(
 console.info("Consumer service is started...");
 
 function check(client, name) {
-  client.SayHello({ item: name, num: 0 }, (err, data) => {
+  client.CheckItem({ item: name, num: 0 }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+}
+
+function change(client, name, n) {
+  client.ChangeItem({ item: name, num: n }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -36,6 +46,14 @@ function main() {
 
   const bank = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
   check(bank, "Hello");
+
+  const inv = new productService(REMOTE_HOST2, grpc.credentials.createInsecure());
+
+  check(inv, "Coffee");
+  check(inv, "Pens");
+  change(inv, "Pens", 1);
+  check(inv, "Pens");
+  change(inv, "Pens", -1);
 };
 
 main();
