@@ -13,28 +13,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\x12\x05greet\"\x16\n\x06Single\x12\x0c\n\x04item\x18\x01 \x01(\t\"#\n\x06\x44ouble\x12\x0c\n\x04item\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\"6\n\x11InventoryResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x11\n\tinventory\x18\x02 \x01(\x05\"\x1e\n\x0c\x42\x61nkResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2\x83\x01\n\x10InventoryService\x12\x36\n\tCheckItem\x12\r.greet.Single\x1a\x18.greet.InventoryResponse\"\x00\x12\x37\n\nChangeItem\x12\r.greet.Double\x1a\x18.greet.InventoryResponse\"\x00\x32=\n\x07Greeter\x12\x32\n\x08SayHello\x12\x13.greet.HelloRequest\x1a\x11.greet.HelloReplyB\x0e\xaa\x02\x0bGrpcGreeterb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\"\x1c\n\x0c\x43heckProduct\x12\x0c\n\x04item\x18\x01 \x01(\t\"*\n\rChangeProduct\x12\x0c\n\x04item\x18\x01 \x01(\t\x12\x0b\n\x03num\x18\x02 \x01(\x05\"8\n\x13TransactionResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x11\n\tinventory\x18\x02 \x01(\x05\x32z\n\x0eProductService\x12\x32\n\tCheckItem\x12\r.CheckProduct\x1a\x14.TransactionResponse\"\x00\x12\x34\n\nChangeItem\x12\x0e.ChangeProduct\x1a\x14.TransactionResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'Service_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'\252\002\013GrpcGreeter'
-  _SINGLE._serialized_start=24
-  _SINGLE._serialized_end=46
-  _DOUBLE._serialized_start=48
-  _DOUBLE._serialized_end=83
-  _INVENTORYRESPONSE._serialized_start=85
-  _INVENTORYRESPONSE._serialized_end=139
-  _BANKRESPONSE._serialized_start=141
-  _BANKRESPONSE._serialized_end=171
-  _HELLOREQUEST._serialized_start=173
-  _HELLOREQUEST._serialized_end=201
-  _HELLOREPLY._serialized_start=203
-  _HELLOREPLY._serialized_end=232
-  _INVENTORYSERVICE._serialized_start=235
-  _INVENTORYSERVICE._serialized_end=366
-  _GREETER._serialized_start=368
-  _GREETER._serialized_end=429
+  _CHECKPRODUCT._serialized_start=17
+  _CHECKPRODUCT._serialized_end=45
+  _CHANGEPRODUCT._serialized_start=47
+  _CHANGEPRODUCT._serialized_end=89
+  _TRANSACTIONRESPONSE._serialized_start=91
+  _TRANSACTIONRESPONSE._serialized_end=147
+  _PRODUCTSERVICE._serialized_start=149
+  _PRODUCTSERVICE._serialized_end=271
 # @@protoc_insertion_point(module_scope)

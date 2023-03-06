@@ -5,7 +5,7 @@ import grpc
 import Service_pb2 as Service__pb2
 
 
-class InventoryServiceStub(object):
+class ProductServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,18 +15,18 @@ class InventoryServiceStub(object):
             channel: A grpc.Channel.
         """
         self.CheckItem = channel.unary_unary(
-                '/greet.InventoryService/CheckItem',
-                request_serializer=Service__pb2.Single.SerializeToString,
-                response_deserializer=Service__pb2.InventoryResponse.FromString,
+                '/ProductService/CheckItem',
+                request_serializer=Service__pb2.CheckProduct.SerializeToString,
+                response_deserializer=Service__pb2.TransactionResponse.FromString,
                 )
         self.ChangeItem = channel.unary_unary(
-                '/greet.InventoryService/ChangeItem',
-                request_serializer=Service__pb2.Double.SerializeToString,
-                response_deserializer=Service__pb2.InventoryResponse.FromString,
+                '/ProductService/ChangeItem',
+                request_serializer=Service__pb2.ChangeProduct.SerializeToString,
+                response_deserializer=Service__pb2.TransactionResponse.FromString,
                 )
 
 
-class InventoryServiceServicer(object):
+class ProductServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CheckItem(self, request, context):
@@ -42,26 +42,26 @@ class InventoryServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_InventoryServiceServicer_to_server(servicer, server):
+def add_ProductServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CheckItem': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckItem,
-                    request_deserializer=Service__pb2.Single.FromString,
-                    response_serializer=Service__pb2.InventoryResponse.SerializeToString,
+                    request_deserializer=Service__pb2.CheckProduct.FromString,
+                    response_serializer=Service__pb2.TransactionResponse.SerializeToString,
             ),
             'ChangeItem': grpc.unary_unary_rpc_method_handler(
                     servicer.ChangeItem,
-                    request_deserializer=Service__pb2.Double.FromString,
-                    response_serializer=Service__pb2.InventoryResponse.SerializeToString,
+                    request_deserializer=Service__pb2.ChangeProduct.FromString,
+                    response_serializer=Service__pb2.TransactionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'greet.InventoryService', rpc_method_handlers)
+            'ProductService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class InventoryService(object):
+class ProductService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -75,9 +75,9 @@ class InventoryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/greet.InventoryService/CheckItem',
-            Service__pb2.Single.SerializeToString,
-            Service__pb2.InventoryResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ProductService/CheckItem',
+            Service__pb2.CheckProduct.SerializeToString,
+            Service__pb2.TransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -92,73 +92,8 @@ class InventoryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/greet.InventoryService/ChangeItem',
-            Service__pb2.Double.SerializeToString,
-            Service__pb2.InventoryResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-
-class GreeterStub(object):
-    """The greeting service definition.
-    """
-
-    def __init__(self, channel):
-        """Constructor.
-
-        Args:
-            channel: A grpc.Channel.
-        """
-        self.SayHello = channel.unary_unary(
-                '/greet.Greeter/SayHello',
-                request_serializer=Service__pb2.HelloRequest.SerializeToString,
-                response_deserializer=Service__pb2.HelloReply.FromString,
-                )
-
-
-class GreeterServicer(object):
-    """The greeting service definition.
-    """
-
-    def SayHello(self, request, context):
-        """Sends a greeting
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_GreeterServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-            'SayHello': grpc.unary_unary_rpc_method_handler(
-                    servicer.SayHello,
-                    request_deserializer=Service__pb2.HelloRequest.FromString,
-                    response_serializer=Service__pb2.HelloReply.SerializeToString,
-            ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-            'greet.Greeter', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
- # This class is part of an EXPERIMENTAL API.
-class Greeter(object):
-    """The greeting service definition.
-    """
-
-    @staticmethod
-    def SayHello(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/greet.Greeter/SayHello',
-            Service__pb2.HelloRequest.SerializeToString,
-            Service__pb2.HelloReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ProductService/ChangeItem',
+            Service__pb2.ChangeProduct.SerializeToString,
+            Service__pb2.TransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
