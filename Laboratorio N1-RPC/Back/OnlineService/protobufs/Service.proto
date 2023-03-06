@@ -1,22 +1,15 @@
 syntax = "proto3";
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
+service InventoryService{
+    rpc CheckItem(Send) returns (TransactionResponse) {}
+    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+service ProductService{
+    rpc CheckBank(Send) returns (TransactionResponse) {}
 }
 
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-}
-
-message CheckProduct{
+message Send{
     string item = 1;
 }
 
@@ -28,9 +21,4 @@ message ChangeProduct{
 message TransactionResponse{
     bool status = 1;
     int32 inventory = 2;
-}
-
-service ProductService{
-    rpc CheckItem(CheckProduct) returns (TransactionResponse) {}
-    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
 }
