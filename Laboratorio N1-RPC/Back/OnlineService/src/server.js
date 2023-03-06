@@ -40,16 +40,26 @@ function change(client, name, n) {
   });
 }
 
+function checkB(client, name) {
+  client.CheckBank({ item: name, num: 0 }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+}
+
 const paymentService = grpc.loadPackageDefinition(packageDefinition).PaymentService;
 const inventoryService = grpc.loadPackageDefinition(packageDefinition).InventoryService;
 
 function main() {
 
   const bank = new paymentService(REMOTE_HOST1, grpc.credentials.createInsecure());
-  check(bank, "1234");
-  check(bank, "cero");
-  check(bank, "4321");
-  check(bank, "noExiste");
+  checkB(bank, "1234");
+  checkB(bank, "cero");
+  checkB(bank, "4321");
+  checkB(bank, "noExiste");
 
   const inv = new inventoryService(REMOTE_HOST2, grpc.credentials.createInsecure());
 
