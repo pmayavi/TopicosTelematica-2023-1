@@ -52,7 +52,7 @@ function checkB(client, name) {
 }
 
 function ship(client, add, it) {
-  client.ShipItem({ adress: add, item: it }, (err, data) => {
+  client.ShipItem({ address: add, item: it }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
