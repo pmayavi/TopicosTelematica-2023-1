@@ -45,14 +45,6 @@ const productService2 = grpc.loadPackageDefinition(packageDefinition).Greeter;
 
 function main() {
 
-  const ServicePy = new productService(REMOTE_HOST1, grpc.credentials.createInsecure());
-
-  check(ServicePy, "Coffee");
-  check(ServicePy, "Pens");
-  change(ServicePy, "Pens", 1);
-  check(ServicePy, "Pens");
-  change(ServicePy, "Pens", -1);
-
   const ServiceCss = new productService2(REMOTE_HOST2, grpc.credentials.createInsecure());
 
   ServiceCss.SayHello({ item: "Hello" }, (err, data) => {
