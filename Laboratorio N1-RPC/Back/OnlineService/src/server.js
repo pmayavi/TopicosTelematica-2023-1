@@ -19,58 +19,37 @@ const packageDefinition = protoLoader.loadSync(
 
 console.info("Consumer service is started...");
 
+function check(client, name) {
+  client.CheckItem({ item: name, num: 0 }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+}
+
+function change(client, name, n) {
+  client.ChangeItem({ item: name, num: n }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Response received from remote service:', data); // API response
+    }
+  });
+}
+
 const productService = grpc.loadPackageDefinition(packageDefinition).ProductService;
 
 function main() {
 
-  const item1 = "Coffee";
-  const item2 = "Pens";
   const client = new productService(REMOTE_HOST, grpc.credentials.createInsecure());
 
-  client.CheckItem({ item: item1, num: 0 }, (err, data) => {
-
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-
-  client.CheckItem({ item: item2, num: 0 }, (err, data) => {
-
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-
-  client.ChangeItem({ item: item2, num: 1 }, (err, data) => {
-
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-
-  client.CheckItem({ item: item2, num: 0 }, (err, data) => {
-
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
-
-  client.ChangeItem({ item: item2, num: -1 }, (err, data) => {
-
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Response received from remote service:', data); // API response
-    }
-  });
+  check(client, "Coffee");
+  check(client, "Pens");
+  change(client, "Pens", 1);
+  check(client, "Pens");
+  change(client, "Pens", -1);
 
 };
 

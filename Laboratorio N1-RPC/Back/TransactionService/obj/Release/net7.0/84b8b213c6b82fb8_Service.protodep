@@ -1,0 +1,2 @@
+obj\Release\net7.0/Service.cs \
+obj\Release\net7.0/ServiceGrpc.cs: ../OnlineService/protobufs/Service.proto
