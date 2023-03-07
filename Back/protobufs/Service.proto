@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+service InventoryService{
+    rpc CheckItem(Send) returns (TransactionResponse) {}
+    rpc ChangeItem(ChangeProduct) returns (TransactionResponse) {}
+}
+
+service PaymentService{
+    rpc CheckBank(Send) returns (TransactionResponse) {}
+}
+
+service Shipment{
+    rpc ShipItem(Ship) returns (TransactionResponse) {}
+}
+
+message Send{
+    string item = 1;
+}
+
+message ChangeProduct{
+    string item = 1;
+    int32 num = 2;
+}
+
+message Ship{
+    string address = 1;
+    string item = 2;
+}
+
+message TransactionResponse{
+    bool status = 1;
+    int32 inventory = 2;
+}
