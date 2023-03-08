@@ -60,57 +60,61 @@ Y luego se escribe en el servicio inventario su segundo metodo para modificar el
 Despliego los servicios de Python en 2 instancias de AWS y 1 local de C#, cada instancia se le ingresan los comandos que estan en su carpeta en el .txt, de esta forma se inicia correctamente los servicios con los requerimientos instalados. Ya se pueden probar por medio de Postman, ingresando su IP publica con el puerto :8080, para el servicio de C# se debe editar en launchSettings.json el applicationUrl como la IP privada actual de la maquina que realizara las pruebas de Postman o localhost, en postman la misma IP.
 A continuacion escribire los comandos de cada maquina, aunque ya estan incluidos en cada carpeta, las lineas vacias indican una pausa, lo que esta debajo debe copiarse por su cuenta.
 
-InventoryService:
+*InventoryService:*
 ```sh
 sudo apt update && sudo apt upgrade -y && sudo apt-get install python3 && sudo apt-get install python3-pip -y
-
+```
+```sh
 sudo python3 -m pip install grpcio
 sudo python3 -m pip install grpcio-tools
 sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
 cd TopicosTelematica-2023-1/Back/InventoryService/src/
 sudo python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/Service.proto
 sudo python3 inventory.py
-
+```
+```sh
 sudo git pull && \
 sudo python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/Service.proto && \
 sudo python3 inventory.py
-
 ```
 
-PaymentService:
+*PaymentService:*
 ```sh
 sudo apt update && sudo apt upgrade -y && sudo apt-get install python3 && sudo apt-get install python3-pip -y
-
+```
+```sh
 sudo python3 -m pip install grpcio
 sudo python3 -m pip install grpcio-tools
 sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
 cd TopicosTelematica-2023-1/Back/PaymentService/src/
 sudo python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/Service.proto
 sudo python3 payment.py
-
+```
+```sh
 sudo git pull && \
 sudo python3 -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/Service.proto && \
 sudo python3 payment.py
-
 ```
 
-ShipmentService:
+*ShipmentService:*
 ```sh
 sudo apt update && sudo apt upgrade -y
-
+```
+```sh
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-6.0
-
+```
+```sh
 sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-6.0
-
+```
+```sh
 sudo apt-get install -y dotnet-runtime-6.0
 sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
 cd TopicosTelematica-2023-1/Back/ShipmentService/ShipmentService/
 sudo dotnet build
 sudo dotnet run
-
 ```
 
 *******
