@@ -1,12 +1,3 @@
-dotnet new console
-dotnet nuget add source --name nuget.org https://api.nuget.org/v3/index.json
-dotnet add package Grpc.AspNetCore
-dotnet add package Grpc.Tools    
-dotnet add package Google.Protobuf
-dotnet add package Grpc.Net.Client
-
-
-
 sudo apt update && sudo apt upgrade -y
 
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
