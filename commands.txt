@@ -18,6 +18,6 @@ sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-6.0
 
 sudo apt-get install -y dotnet-runtime-6.0
 sudo git clone https://github.com/pmayavi/TopicosTelematica-2023-1.git
-cd TopicosTelematica-2023-1/Back/TransactionService/
+cd TopicosTelematica-2023-1/Back/ShipmentService/ShipmentService/
 sudo dotnet build
 sudo dotnet run
